@@ -8,10 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.database_testing.DataBaseApp
-import com.example.database_testing.ItemViewModel
-import com.example.database_testing.R
-import com.example.database_testing.ViewModelFactory
 import com.example.database_testing.databinding.FragmentAddItemBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -35,11 +31,8 @@ class AddItems : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_item,container,false)
         return binding?.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,7 +62,5 @@ class AddItems : Fragment() {
         super.onDestroyView()
         binding = null
     }
-
-
 
 }

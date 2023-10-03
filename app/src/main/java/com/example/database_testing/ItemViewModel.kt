@@ -59,5 +59,18 @@ class ItemViewModel(private val itemDao: ItemDao) : ViewModel() {
         }
     }
 
+    fun deleteItemFromDataBase(item: Item) {
+        viewModelScope.launch {
+            try {
+                itemDao.deleteItem(item)
+                // Directly update in-memory list after a successful delete
+                val currentList = _itemsData.value.toMutableList()
+                currentList.remove(item)
+                _itemsData.value = currentList
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
 
 }

@@ -10,23 +10,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.database_testing.ItemAdapter
-import com.example.database_testing.ItemViewModel
-import com.example.database_testing.R
-import com.example.database_testing.ViewModelFactory
 import com.example.database_testing.databinding.FragmentItemListBinding
 import kotlinx.coroutines.launch
 
 
 
-class ItemList : Fragment() {
+class ItemList : Fragment(), ItemAdapter.OnItemDeleteListener {
 
     private lateinit var binding: FragmentItemListBinding
 
@@ -41,7 +34,6 @@ class ItemList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MyFragment", "onCreate started")
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -52,7 +44,6 @@ class ItemList : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_list, container, false)
         Log.d("MyFragment", "onCreate View started binding has finished")
         return binding.root
-
     }
 
     override fun onAttach(context: Context) {
@@ -70,9 +61,10 @@ class ItemList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the Adapter
-        val adapter = ItemAdapter(listOf()) // Initially empty list, or viewModel.itemsList.value if it's LiveData
+        val adapter = ItemAdapter(listOf())
 
-        // Set the Adapter to the RecyclerView
+        adapter.deleteListener = this
+
         binding.itemsRecyclerView.adapter = adapter
 
         // Set the LayoutManager for the RecyclerView
@@ -95,7 +87,14 @@ class ItemList : Fragment() {
             Log.d("MyFragment", "can you click now??")
             navController.navigate(R.id.action_itemList_to_addItem)
         }
+
     }
+
+    override fun onDeleteItem(item: Item) {
+        // Use the viewModel to delete the item
+        viewModel.deleteItemFromDataBase(item)
+    }
+
 
 }
 

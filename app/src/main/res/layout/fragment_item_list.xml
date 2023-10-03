@@ -20,23 +20,23 @@
 
             <TextView
                 android:id="@+id/item_name_view"
-                android:layout_width="172dp"
+                android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Items" />
 
             <TextView
                 android:id="@+id/item_quantity_view"
-                android:layout_width="176dp"
+                android:layout_width="13dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Quantity" />
 
             <TextView
                 android:id="@+id/item_price_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="83dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
                 android:text="Price" />
         </LinearLayout>
 
