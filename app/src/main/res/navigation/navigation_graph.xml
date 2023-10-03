@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/itemList">
+
+    <fragment
+        android:id="@+id/itemList"
+        android:name="com.example.database_testing.ItemList"
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_itemList_to_addItem"
+            app:destination="@id/addItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/addItem"
+        android:name="com.example.database_testing.AddItems"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" >
+        <action
+            android:id="@+id/action_addItem_to_itemList"
+            app:destination="@id/itemList" />
+    </fragment>
+</navigation>
